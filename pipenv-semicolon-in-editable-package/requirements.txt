@@ -1,0 +1,9 @@
+-i https://pypi.org/simple
+-e git+https://github.com/PyCQA/pylint.git@8682a220911a9c22286089e08f7e77b7b15d990b#egg=pylint ; python_version >= '3.4'
+astroid==2.0.4
+isort==4.3.4 ; python_version >= '2.7' and python_version != '3.1.*' and python_version != '3.3.*' and python_version != '3.0.*' and python_version != '3.2.*'
+lazy-object-proxy==1.3.1
+mccabe==0.6.1
+six==1.11.0
+typed-ast==1.1.0 ; python_version < '3.7' and implementation_name == 'cpython'
+wrapt==1.10.11
