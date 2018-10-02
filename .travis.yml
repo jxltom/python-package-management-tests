@@ -6,36 +6,71 @@ python: "3.6"
 
 env:
   matrix:
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pip-should-install-editable-packages-with-different-version"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pip-should-install-editable-packages-with-different-version"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-different-version"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-different-version"
+    - TESTDIR="pip-install-editable-package-with-markers" PIPENV="pipenv==2018.7.1"
 
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pip-should-install-editable-packages-with-same-version"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pip-should-install-editable-packages-with-same-version"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-same-version"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-same-version"
+    - TESTDIR="pip-should-install-editable-packages-with-different-version" PIPENV="pipenv==2018.7.1"
 
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+    - TESTDIR="pip-should-install-editable-packages-with-same-version" PIPENV="pipenv==2018.7.1"
 
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-incorrect-constraints-in-lock"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-incorrect-constraints-in-lock"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-incorrect-constraints-in-lock"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-incorrect-constraints-in-lock"
+    - TESTDIR="pip-vs-pipenv-speed" PIPENV="pipenv==2018.7.1"
 
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-semicolon-in-editable-package"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-semicolon-in-editable-package"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-editable-package"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-editable-package"
+    - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
-    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-semicolon-in-requirements"
-    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-semicolon-in-requirements"
-    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-requirements"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-requirements"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+
+    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==2018.7.1" 
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+
+matrix:
+  fast_finish: true
 
 before_script:
   - pip install "$PIPENV"
   - cd "$TESTDIR"
+
+script:
+  - |
+  if [ "$TESTDIR" = "pip-install-editable-package-with-markers" ]; then
+    pipenv run pip install -r requirements-error.txt || exit 0;
+    pipenv run pip install -r requirements-ok.txt;
+  elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
+    pipenv run pip install -r requirements.txt;
+    pipenv run pip list | grep pytest==3.8.0;
+    pipenv run pip install -r requirements-updated.txt;
+    pipenv run pip list | grep pytest==3.8.1;
+  elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-same-version" ]; then
+    pipenv run pip install -r requirements.txt;
+    pipenv run pip install -r requirements.txt | grep "successfully installed pytest";
+  elif [ "$TESTDIR" = "pip-vs-pipenv-speed" ]; then
+    pipenv install > /dev/null;
+    time pipenv install;
+    pipenv uninstall --all;
+    time pipenv run pip install -r requirements.txt;
+  elif [ "$TESTDIR" = "pipenv-shouldnt-different-lock-for-different-python-version" ]; then
+    pipenv --two;
+    pipenv lock --clear;
+    grep pathlib2 Pipfile.lock;
+    pipenv --three;
+    pipenv lock --clear;
+    grep pathlib2 Pipfile.lock;
+  elif [ "$TESTDIR" = "pipenv-incorrect-constraints-in-lock" ]; then
+    pipenv lock --clear;
+  elif [ "$TESTDIR" = "pipenv-semicolon-in-editable-package" ]; then
+    pipenv lock --clear;
+  elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
+    pipenv lock -r > requirements.txt;
+    pip install -r requirements.txt;
+  fi

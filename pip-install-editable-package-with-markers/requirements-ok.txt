@@ -1,0 +1,1 @@
+-e git+https://github.com/pytest-dev/pytest.git@3.8.1#egg=pytest ; python_version >= '2.6'

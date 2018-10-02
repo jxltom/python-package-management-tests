@@ -5,3 +5,8 @@ name = "pypi"
 
 [packages]
 pytest = "==3.8.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
