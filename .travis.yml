@@ -2,7 +2,7 @@ sudo: false
 
 language: python
 
-python: "3.6"
+python: "2.7"
 
 env:
   matrix:
@@ -27,7 +27,7 @@ env:
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
-    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="-e git+https://github.com/jxltom/pipenv.git@9e46fc8#egg=pipenv"
+    - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
     - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==2018.7.1" 
     - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==11.9.0"
@@ -38,7 +38,7 @@ matrix:
   fast_finish: true
 
 before_script:
-  - pip install $(echo $PIPENV)
+  - pip install "$PIPENV"
   - cd "$TESTDIR"
 
 script:
