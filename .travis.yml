@@ -1,0 +1,22 @@
+sudo: false
+
+language: python
+
+python: "3.6"
+
+env:
+  - PIPENV_VERSIN="2018.7.1"
+  - PIPENV_VERSION="11.9.0"
+  - PIPENV_VERSION="master"
+  - PIPENV_VERSION="fork"
+
+env:
+  - TESTDIR="pip-should-install-editable-packages-with-different-version"
+  - TESTDIR="pip-should-install-editable-packages-with-same-version"
+  - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+  - TESTDIR="pipenv-incorrect-constraints-in-lock"
+  - TESTDIR="pipenv-semicolon-in-editable-package"
+  - TESTDIR="pipenv-semicolon-in-requirements"
+
+script:
+  - cd "$TESTDIR"

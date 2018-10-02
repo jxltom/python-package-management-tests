@@ -1,0 +1,8 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pylint = {git = "https://github.com/PyCQA/pylint.git", editable = true, ref = "2.1.1", markers = "python_version >= '3.4'"}
+
