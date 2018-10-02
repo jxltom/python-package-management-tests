@@ -4,4 +4,4 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pylint = {git = "https://github.com/PyCQA/pylint.git", ref = "2.1.1", editable = true, markers = "python_version >= '3.4'"}
+pytest = {git = "https://github.com/pytest-dev/pytest.git", ref = "3.8.1", editable = true, markers = "python_version >= '2.6'"}
