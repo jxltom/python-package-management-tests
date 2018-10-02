@@ -6,17 +6,35 @@ python: "3.6"
 
 env:
   matrix:
-    - PIPENV="pipenv==2018.7.1"
-    - PIPENV="pipenv==11.9.0"
-    - PIPENVRSION="https://github.com/pypa/pipenv/archive/master.zip"
-    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pip-should-install-editable-packages-with-different-version"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pip-should-install-editable-packages-with-different-version"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-different-version"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-different-version"
 
-    - TESTDIR="pip-should-install-editable-packages-with-different-version"
-    - TESTDIR="pip-should-install-editable-packages-with-same-version"
-    - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
-    - TESTDIR="pipenv-incorrect-constraints-in-lock"
-    - TESTDIR="pipenv-semicolon-in-editable-package"
-    - TESTDIR="pipenv-semicolon-in-requirements"
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pip-should-install-editable-packages-with-same-version"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pip-should-install-editable-packages-with-same-version"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-same-version"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pip-should-install-editable-packages-with-same-version"
+
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
+
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-incorrect-constraints-in-lock"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-incorrect-constraints-in-lock"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-incorrect-constraints-in-lock"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-incorrect-constraints-in-lock"
+
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-semicolon-in-editable-package"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-semicolon-in-editable-package"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-editable-package"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-editable-package"
+
+    - PIPENV="pipenv==2018.7.1" TESTDIR="pipenv-semicolon-in-requirements"
+    - PIPENV="pipenv==11.9.0" TESTDIR="pipenv-semicolon-in-requirements"
+    - PIPENV="https://github.com/pypa/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-requirements"
+    - PIPENV="https://github.com/jxltom/pipenv/archive/master.zip" TESTDIR="pipenv-semicolon-in-requirements"
 
 before_script:
   - pip install "$PIPENV"
