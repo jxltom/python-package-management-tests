@@ -48,9 +48,9 @@ script:
       pipenv run pip install -r requirements-ok.txt;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
       pipenv run pip install -r requirements.txt;
-      pipenv run pip list | grep 3.8.0;
+      pipenv run pip list | grep 3.8.0 && echo 3.8.0;
       pipenv run pip install -r requirements-updated.txt;
-      pipenv run pip list | grep 3.8.1;
+      pipenv run pip list | grep 3.8.1 && echo 3.8.1;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-same-version" ]; then
       pipenv run pip install -r requirements.txt;
       pipenv run pip install -r requirements.txt | grep -i "successfully installed pytest";
