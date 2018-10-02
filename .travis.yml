@@ -10,7 +10,6 @@ env:
   - PIPENV_VERSION="master"
   - PIPENV_VERSION="fork"
 
-env:
   - TESTDIR="pip-should-install-editable-packages-with-different-version"
   - TESTDIR="pip-should-install-editable-packages-with-same-version"
   - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version"
