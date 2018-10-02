@@ -43,14 +43,15 @@ before_script:
 
 script:
   - |
+    set -e;
     if [ "$TESTDIR" = "pip-install-editable-package-with-markers" ]; then
       pipenv run pip install -r requirements-error.txt || exit 0;
       pipenv run pip install -r requirements-ok.txt;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
       pipenv run pip install -r requirements.txt;
-      pipenv run pip list | grep 3.8.0 && echo 3.8.0;
+      pipenv run pip list | grep 3.8.0;
       pipenv run pip install -r requirements-updated.txt;
-      pipenv run pip list | grep 3.8.1 && echo 3.8.1;
+      pipenv run pip list | grep 3.8.1;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-same-version" ]; then
       pipenv run pip install -r requirements.txt;
       pipenv run pip install -r requirements.txt | grep -i "successfully installed pytest";
@@ -80,16 +81,16 @@ script:
       pipenv --two;
       pipenv run python --version
       pipenv lock --clear;
-      grep pathlib2 Pipfile.lock && echo pathlib2;
+      grep pathlib2 Pipfile.lock;
       pipenv --three;
       pipenv run python --version
       pipenv lock --clear;
-      grep pathlib2 Pipfile.lock && echo pathlib2;
+      grep pathlib2 Pipfile.lock;
     elif [ "$TESTDIR" = "pipenv-incorrect-constraints-in-lock" ]; then
       pipenv lock --clear;
     elif [ "$TESTDIR" = "pipenv-semicolon-in-editable-package" ]; then
       pipenv lock --clear;
     elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
-      pipenv lock -r > requirements.txt || exit 1;
+      pipenv lock -r > requirements.txt;
       pip install -r requirements.txt;
     fi
