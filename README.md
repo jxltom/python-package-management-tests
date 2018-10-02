@@ -1,1 +1,1 @@
-test-python-package-management
+python-package-management-tests
