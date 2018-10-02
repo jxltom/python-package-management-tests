@@ -49,7 +49,7 @@ script:
       pipenv run pip install -r requirements-ok.txt;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
       pipenv run pip install -r requirements.txt;
-      pipenv run pip list | grep 3.8.0;
+      pipenv run pip list | grep 3.7.5;
       pipenv run pip install -r requirements-updated.txt;
       pipenv run pip list | grep 3.8.1;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-same-version" ]; then
@@ -58,6 +58,8 @@ script:
     elif [ "$TESTDIR" = "pip-vs-pipenv-speed" ]; then
       pipenv uninstall --all > /dev/null;
       time pipenv install --deploy > /dev/null;
+      pipenv uninstall --all > /dev/null;
+      time pipenv install --ignore-pipfile > /dev/null;
       pipenv uninstall --all > /dev/null;
       time pipenv install --deploy --ignore-pipfile > /dev/null;
       pipenv uninstall --all > /dev/null;
@@ -68,6 +70,9 @@ script:
       pipenv uninstall --all > /dev/null;
       pipenv install > /dev/null;
       time pipenv install --deploy > /dev/null;
+      pipenv uninstall --all > /dev/null;
+      pipenv install > /dev/null;
+      time pipenv install --ignore-pipfile > /dev/null;
       pipenv uninstall --all > /dev/null;
       pipenv install > /dev/null;
       time pipenv install --deploy --ignore-pipfile > /dev/null;
