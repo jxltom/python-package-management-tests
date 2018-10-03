@@ -98,7 +98,7 @@ script:
     elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
       pipenv lock -r > requirements.txt;
       pip install -r requirements.txt;
-    elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
+    elif [ "$TESTDIR" = "pipenv-with-pip9-cannot-work-with-vcs" ]; then
       pip install pip==9.0.1;
       pipenv lock --clear;
     fi
