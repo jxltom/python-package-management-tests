@@ -22,7 +22,6 @@ env:
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.6.25"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.5.18"
-    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==11.10.4"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
@@ -37,16 +36,16 @@ env:
     - TESTDIR="pipenv-with-pip9-cannot-work-with-vcs" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-with-pip9-cannot-work-with-vcs" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
-    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==2018.7.1" 
-    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==11.9.0"
-    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
-    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
-
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==2018.7.1" 
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-semicolon-in-requirements" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+   
 matrix:
   fast_finish: true
 
@@ -108,9 +107,9 @@ script:
     elif [ "$TESTDIR" = "pipenv-with-pip9-cannot-work-with-vcs" ]; then
       pip install pip==9.0.1;
       pipenv lock --clear;
+    elif [ "$TESTDIR" = "pipenv-semicolon-in-editable-package" ]; then
+      pipenv lock --clear;
     elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
       pipenv lock -r > requirements.txt;
       pip install -r requirements.txt;
-    elif [ "$TESTDIR" = "pipenv-semicolon-in-editable-package" ]; then
-      pipenv lock --clear;
     fi
