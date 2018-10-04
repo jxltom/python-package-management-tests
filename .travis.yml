@@ -14,11 +14,6 @@ env:
 
     - TESTDIR="pip-vs-pipenv-speed" PIPENV="pipenv"
 
-    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==2018.7.1"
-    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==11.9.0"
-    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
-    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
-    
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.6.25"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.5.18"
@@ -26,6 +21,11 @@ env:
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
+    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+    
     - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-shouldnt-different-lock-for-different-python-version" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
