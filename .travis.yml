@@ -6,7 +6,8 @@ python: "3.6"
 
 env:
   matrix:
-    - TESTDIR="pip-install-editable-package-with-markers" PIPENV="pipenv"
+    - TESTDIR="pip-install-editable-package-with-markers" PIP="pip==9.0.1" PIPENV="pipenv"
+    - TESTDIR="pip-install-editable-package-with-markers" PIP="pip" PIPENV="pipenv"
 
     - TESTDIR="pip-should-install-editable-packages-with-different-version" PIPENV="pipenv"
 
@@ -63,7 +64,8 @@ script:
   - |
     set -e;
     if [ "$TESTDIR" = "pip-install-editable-package-with-markers" ]; then
-      pipenv run pip install -r requirements-error.txt || exit 0;
+      pipenv run pip install "$PIP";
+      pipenv run pip install -r requirements-error.txt && exit 1 || exit 0;
       pipenv run pip install -r requirements-ok.txt;
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
       pipenv run pip install -r requirements.txt;
