@@ -96,6 +96,7 @@ script:
     elif [ "$TESTDIR" = "pipenv-lock-isnot-update-if-editable-is-installed" ]; then
       pipenv run pip install -e git+https://github.com/pytest-dev/pytest.git@aea962d#egg=pytest
       pipenv lock --clear
+      grep 3f6a46c Pipfile.lock
     elif [ "$TESTDIR" = "pipenv-incorrect-constraints-in-lock" ]; then
       pipenv lock --clear;
     elif [ "$TESTDIR" = "pipenv-shouldnt-different-lock-for-different-python-version" ]; then
