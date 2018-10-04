@@ -20,6 +20,9 @@ env:
     - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
     
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.6.25"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==2018.5.18"
+    - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==11.10.4"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-incorrect-constraints-in-lock" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
@@ -94,8 +97,8 @@ script:
       pipenv install > /dev/null;
       time pipenv run pip install -r requirements.txt > /dev/null;
     elif [ "$TESTDIR" = "pipenv-lock-isnot-update-if-editable-is-installed" ]; then
-      pipenv run pip install -e git+https://github.com/pytest-dev/pytest.git@aea962d#egg=pytest
-      pipenv lock --clear
+      pipenv run pip install -e git+https://github.com/pytest-dev/pytest.git@aea962d#egg=pytest > /dev/null
+      pipenv lock
       grep 3f6a46c Pipfile.lock
     elif [ "$TESTDIR" = "pipenv-incorrect-constraints-in-lock" ]; then
       pipenv lock --clear;
