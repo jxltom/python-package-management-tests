@@ -51,6 +51,7 @@ env:
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==2018.6.25"
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==2018.5.18"
+    - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==11.10.4"
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==11.10.0"
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-recreate-virtualenv" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
