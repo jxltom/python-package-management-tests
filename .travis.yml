@@ -68,7 +68,8 @@ matrix:
   fast_finish: true
 
 before_script:
-  - pip install -U pip
+  # This should be pinned to latest pip version except for known bugs
+  - pip install -U pip==18.0
   - pip install "$PIPENV"
   - cd "$TESTDIR"
 
