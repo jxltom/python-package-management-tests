@@ -39,7 +39,7 @@ env:
     - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==2018.5.18"
     - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==11.9.0"
     - TESTDIR="pipenv-lock-no-support-@" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
-    - TESTDIR="pipenv-lock-platform-markers" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-semicolon-in-editable-package" PIPENV="pipenv==2018.6.25"
