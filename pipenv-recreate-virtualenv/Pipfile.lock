@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "05789cd0062f5795ea5f17ccc9a0e7e79a286de1523bc4803d981676cda31234"
+            "sha256": "828f65b37f87e9ad54e871e7540a5dd9911740ad0db8a02433c9da543a522d8a"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -52,8 +52,7 @@
         },
         "pytest": {
             "editable": true,
-            "git": "https://github.com/pytest-dev/pytest.git",
-            "ref": "3f6a46c"
+            "git": "https://github.com/pytest-dev/pytest.git@3f6a46c"
         },
         "six": {
             "hashes": [

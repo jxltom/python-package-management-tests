@@ -65,6 +65,13 @@ env:
     - TESTDIR="pipenv-lock-platform-markers" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
     - TESTDIR="pipenv-lock-platform-markers" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
 
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==2018.7.1"
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==2018.6.25"
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==2018.5.18"
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="pipenv==11.9.0"
+    - TESTDIR="pipenv-lock-no-support-@" PIPENV="https://github.com/pypa/pipenv/archive/master.zip"
+    - TESTDIR="pipenv-lock-platform-markers" PIPENV="https://github.com/jxltom/pipenv/archive/master.zip"
+
     - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==2018.7.1"
     - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==11.10.4"
     - TESTDIR="pipenv-lock-isnot-update-if-editable-is-installed" PIPENV="pipenv==11.10.0"
@@ -147,11 +154,13 @@ script:
       export PIPENV_IGNORE_VIRTUALENVS=1
       pipenv install --system --deploy | grep "out of date" && exit 1 || exit 0
     elif [ "$TESTDIR" = "pipenv-lock-platform-markers" ]; then
-      pipenv lock
+      pipenv lock --clear
       grep platform_system Pipfile.lock
+    elif [ "$TESTDIR" = "pipenv-lock-no-support-@" ]; then
+      pipenv lock --clear
     elif [ "$TESTDIR" = "pipenv-lock-isnot-update-if-editable-is-installed" ]; then
       pipenv run pip install -e git+https://github.com/pytest-dev/pytest.git@aea962d#egg=pytest > /dev/null
-      pipenv lock
+      pipenv lock --clear
       grep 3f6a46c Pipfile.lock
     elif [ "$TESTDIR" = "pipenv-with-pip9-cannot-work-with-vcs" ]; then
       pip install pip==9.0.1
