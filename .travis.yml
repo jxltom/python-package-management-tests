@@ -148,7 +148,7 @@ script:
       pipenv lock --clear
     elif [ "$TESTDIR" = "pipenv-lock-no-support-@" ]; then
       pipenv lock --clear
-      pipenv install --ignore-pipfile
+      pipenv install
     elif [ "$TESTDIR" = "pipenv-semicolon-in-editable-package" ]; then
       pipenv lock --clear
     elif [ "$TESTDIR" = "pipenv-semicolon-in-requirements" ]; then
