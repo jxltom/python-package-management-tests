@@ -4,4 +4,4 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pytest = {git = "https://github.com/pytest-dev/pytest.git@3f6a46c", editable = true}
+pytest = {git = "https://github.com/pytest-dev/pytest.git", ref = "3f6a46c", editable = true}
