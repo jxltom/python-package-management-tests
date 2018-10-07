@@ -144,6 +144,7 @@ script:
       pipenv lock -r > requirements.txt
       pip install -r requirements.txt
     elif [ "$TESTDIR" = "pipenv-recreate-virtualenv" ]; then
+      export PIPENV_IGNORE_VIRTUALENVS=1
       pipenv install --system --deploy --verbose | grep "out of date" && exit 1 || exit 0
     elif [ "$TESTDIR" = "pipenv-lock-platform-markers" ]; then
       pipenv lock
