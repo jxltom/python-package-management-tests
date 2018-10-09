@@ -100,7 +100,7 @@ script:
     set -e;
     if [ "$TESTDIR" = "pip-install-editable-package-with-markers" ]; then
       pipenv run pip install "$PIP"
-      pipenv run pip install -r requirements-error.txt && exit 1 || exit 0
+      pipenv run pip install -r requirements-error.txt && exit 1 || true
       pipenv run pip install -r requirements-ok.txt
     elif [ "$TESTDIR" = "pip-should-install-editable-packages-with-different-version" ]; then
       pipenv run pip install -r requirements.txt
@@ -156,7 +156,7 @@ script:
       pip install -r requirements.txt
     elif [ "$TESTDIR" = "pipenv-recreate-virtualenv" ]; then
       export PIPENV_IGNORE_VIRTUALENVS=1
-      pipenv install --system --deploy | grep "out of date" && exit 1 || exit 0
+      pipenv install --system --deploy | grep "out of date" && exit 1 || true
     elif [ "$TESTDIR" = "pipenv-lock-platform-markers" ]; then
       pipenv lock --clear
       grep platform_system Pipfile.lock
